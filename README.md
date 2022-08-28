@@ -64,7 +64,7 @@ Pour construire l'image `docker build -t <nom_de l'image> <dossier ou créer l'i
 
 ## Docker Compose
 
-Docker Compose permet de décrire, dans un fichier yaml, plusieurs conteneurs comme un ensemble de services. 
+Docker Compose permet de décrire, dans un fichier yml, plusieurs conteneurs comme un ensemble de services. 
 
 ### Commandes
 `docker-compose pull` - pour récupérer l'ensemble des images décrites dans notre fichier docher-compose.yml.
@@ -85,6 +85,9 @@ Docker Compose permet de décrire, dans un fichier yaml, plusieurs conteneurs co
 **`version`** - pour spécifier la version utilisée;
 
 **`services`** - pour définir les différents containers qui vont tourner en même temps; Pour chaque service, il faut définir l'image à utiliser, et spécifier les ports. 
+
+![image](https://user-images.githubusercontent.com/79991066/187093881-0e112bac-96ef-4582-be97-9aa530ed08ec.png)
+
 
 
 
