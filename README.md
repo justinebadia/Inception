@@ -62,6 +62,29 @@ Pour construire l'image `docker build -t <nom_de l'image> <dossier ou créer l'i
 
 ![image](https://user-images.githubusercontent.com/79991066/187090173-5999bc72-33e8-45f6-ba49-64b88b233d25.png)
 
+## Docker Compose
+
+Docker Compose permet de décrire, dans un fichier yaml, plusieurs conteneurs comme un ensemble de services. 
+
+### Commandes
+`docker-compose pull` pour récupérer l'ensemble des images décrites dans notre fichier docher-compose.yml.
+
+`docker-compose up \[-d\]` pour lancer la création de l'ensemble des containers (= une stack Docker Compose).
+
+`docker-compose ps` qui permet de svoir le statut de l'ensemble de notre stack.
+
+`docker-compose logs -f --tail 5` permet de voir les logs sur les différents containers, en se limitant aux 5 premières lignes.
+
+`docker-compose stop` permet d'arrêter une stack Docker Compose, mais ne supprime pas les ressources créées par la stack. Donc si on relance avec `docker-compose up -d` l'ensemble de notre stack sera tout de suite fonctionnel.
+
+`docker-compose down` pour supprimer l'ensemble de la stack, y compris les ressources créées.
+
+`docker-compose config` permet de valider la syntaxe du fichier.
+
+### Élements du Docker Compose
+**`version`** pour spécifier la version utilisée;
+
+**`services`** pour définir les différents containers qui vont tourner en même temps; Pour chaque service, il faut définir l'image à utiliser, et spécifier les ports. 
 
 
 
