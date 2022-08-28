@@ -69,7 +69,7 @@ Docker Compose permet de décrire, dans un fichier yaml, plusieurs conteneurs co
 ### Commandes
 `docker-compose pull` - pour récupérer l'ensemble des images décrites dans notre fichier docher-compose.yml.
 
-`docker-compose up \[-d\]` - pour lancer la création de l'ensemble des containers (= une stack Docker Compose).
+`docker-compose up [-d]` - pour lancer la création de l'ensemble des containers (= une stack Docker Compose).
 
 `docker-compose ps` - qui permet de svoir le statut de l'ensemble de notre stack.
 
