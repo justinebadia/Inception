@@ -84,10 +84,17 @@ Docker Compose permet de décrire, dans un fichier yml, plusieurs conteneurs com
 ### Élements du Docker Compose
 **`version`** - pour spécifier la version utilisée;
 
-**`services`** - pour définir les différents containers qui vont tourner en même temps; Pour chaque service, il faut définir l'image à utiliser, et spécifier les ports. 
+**`services`** - pour définir les différents containers qui vont tourner en même temps. Pour chaque service, il faut définir plusieurs éléments:
 
-![image](https://user-images.githubusercontent.com/79991066/187093881-0e112bac-96ef-4582-be97-9aa530ed08ec.png)
+- l'**`image`** à utiliser ; Au lieu de l'image, on peut spécifier l'argument `build` en lui spécifiant le chemin vers notre Dockerfile, ainsi lors de l'exécution de Docker Compose, il aurait construit le container via le Dockerfile avant de l'exécuter.
 
+- le **`volume`** où stocker les données. Par exemple le volume `db_data` est un volume créé par Docker directement, qui permet d'écrire les données sur le disque hôte sans spécifier l'emplacement exact.
+
+- **`restart`** définit la politique de redémarrage du container (en cas d'erreur fatale par exemple). 
+
+- **`environnement`** pour définir les variables d'environnement.
+
+- **`depends_on`** permet de créer une dépendance entre 2 containers, donc de faire démarrer un container avant l'autre. Par exemple il faut démarrer le service db avant Wordpress car Wordpress dépend de la base de données pour fonctionner.
 
 
 
