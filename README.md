@@ -104,7 +104,13 @@ Install:
 
 Configuration file:
 - https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-debian-10#step-2-configuring-mariadb
-- 
+
+Pour se connecter à la base de données mariadb: 'mysql -u root -ppassword' pour ajouter le mdp
+'show databases' pour voir les bases de données
+'use <le nom de la database qu'on veut voir>'
+'show tables' 
+SELECT <column_name> from <table_name> (ex: SELECT user,password from user;)
+
 
 
  
