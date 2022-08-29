@@ -97,7 +97,14 @@ Docker Compose permet de décrire, dans un fichier yml, plusieurs conteneurs com
 - **`depends_on`** permet de créer une dépendance entre 2 containers, donc de faire démarrer un container avant l'autre. Par exemple il faut démarrer le service db avant Wordpress car Wordpress dépend de la base de données pour fonctionner.
 
 
+## LIENS WEB
+### MARIADB
+Install:
+- https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-debian-10#step-2-configuring-mariadb
 
+Configuration file:
+- https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-debian-10#step-2-configuring-mariadb
+- 
 
 
  
