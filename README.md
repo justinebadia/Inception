@@ -99,17 +99,34 @@ Docker Compose permet de décrire, dans un fichier yml, plusieurs conteneurs com
 
 ## LIENS WEB
 ### MARIADB
-Install:
-- https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-debian-10#step-2-configuring-mariadb
 
-Configuration file:
-- https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-debian-10#step-2-configuring-mariadb
+Dockerfile mariadb
+- pourquoi il a fallu recréer un dossier et chown mysql: car par défaut il s'exécuter dans ce dossier, donc il a fallu le créer sinon le container se fermait
+- expliquer les copy de fichier
+- expliquer le entrypoint
+- expliquer la cmd mysqld
+- expliquer le $@
+
 
 Pour se connecter à la base de données mariadb: 'mysql -u root -ppassword' pour ajouter le mdp
 'show databases' pour voir les bases de données
 'use <le nom de la database qu'on veut voir>'
 'show tables' 
 SELECT <column_name> from <table_name> (ex: SELECT user,password from user;)
+
+Install:
+- https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-debian-10#step-2-configuring-mariadb
+
+Configuration file:
+- https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-debian-10#step-2-configuring-mariadb
+- https://developpaper.com/mariadb-mysql-configuration-file-my-cnf-detailed-explanation/
+
+Gérer la database;
+- https://www.w3schools.com/sql/sql_create_table.asp
+- https://www.guru99.com/sql-server-create-user.html
+- 
+
+
 
 
 
