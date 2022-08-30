@@ -128,5 +128,10 @@ Gérer la database;
 - https://www.interserver.net/tips/kb/mysql-flush-commands/ flush privileges
 - https://mariadb.com/kb/en/grant/ grant mariadb
 
+### WORDPRESS
 
+Le fichier wp-config. php se trouve à la racine de votre installation WordPress, sous les dossiers wp-admin, wp-content et wp-includes.
+
+- https://wp-cli.org/fr/#installation
+- 
  
