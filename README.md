@@ -124,7 +124,9 @@ Configuration file:
 Gérer la database;
 - https://www.w3schools.com/sql/sql_create_table.asp
 - https://www.guru99.com/sql-server-create-user.html
-- 
+- https://www.digitalocean.com/community/tutorials/how-to-reset-your-mysql-or-mariadb-root-password root password
+- https://www.interserver.net/tips/kb/mysql-flush-commands/ flush privileges
+- https://mariadb.com/kb/en/grant/ grant mariadb
 
 
  
