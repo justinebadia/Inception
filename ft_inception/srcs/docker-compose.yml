@@ -1,11 +1,19 @@
 version: '3.8'
 services:
   mariadb:
+    env_file: 
+      - .env
     container_name: mariadb
     build: ./requirements/mariadb
-    volumes:
-      - db_data:/home/jbadia/data
+   # volumes:
+  #    - db_data:/home/jbadia/data
+    restart: always
+  wordpress:
+    env_file:
+      - .env
+    container_name: WordPress
+    build: ./requirements/WordPress 
     restart: always
 
-volumes: 
-  - db_data: {}
+#volumes: 
+ # - db_data: {}
