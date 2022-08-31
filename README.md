@@ -1,4 +1,4 @@
-# Inception
+# Inception 🐳
 Ce projet a pour but d'approfondir vos connaissances en vous faisant utiliser Docker. Vous aller virtualiser plusieurs images Docker en les créant dans une machine virtuelle.
 
 ## Qu'est ce qu'un conteneur ? 
@@ -6,7 +6,7 @@ Les conteneurs sont des enveloppes virtuelles qu'on va créer à l'intérieur de
 
 Les conteneurs sont utilisés pour leur portabilité : 
  - ils sont **auto-porteurs**, ce qui signifie que leur stabilité est assurée quelque soit l'environnement;
- - ils sont **auto-documentés**, ce qui signifie que leur documentation est intégrée via le fichier de configuration nécessaire à son fonctionnement.
+ - ils sont **auto-documentés**, ce qui signifie que leur documentation est intégrée via le fichier de configuration nécessaire à leur fonctionnement.
  
 Le conteneur permet de faire de la **virtualisation légère**, il ne virtualise pas les ressources (il les partage avec le système hôte), il ne créait qu'une isolation des processus.
 
@@ -14,7 +14,7 @@ Le conteneur permet de faire de la **virtualisation légère**, il ne virtualise
 
 **Conteneur stateless**: le conteneur ne stocke pas d'état (ex protocole http).
 
-**Conteneur immuable**: un conteneur ne doit pas stocker de données qui doivent être pérennes, car il les perdra. Pour mettre une base de données en local dans un conteneur Docker, il faut créer un volume pour que celui-ci puisse stocker les données.
+**Conteneur immuable**: un conteneur ne doit pas stocker de données qui doivent être pérennes, car il les perdra. Pour mettre une base de données en local dans un conteneur Docker, il faut créer un **volume** pour que celui-ci puisse stocker les données.
 
 ## Commandes de base
 `docker images` - liste les images disponibles sur notre ordinateur;
@@ -43,19 +43,21 @@ Chaque instruction donnée dans le Dockerfile va créer une nouvelle layer corre
 
 ### Éléments du Dockerfile
 
-**`FROM`** - va télécharger une image de base pour notre container (ex: alpine:3.14)
+**`FROM`** - permet de définir l'image source pour notre container (ex: alpine:3.14)
 
-**`ADD`** - pour copier ou télécharger des fichiers dans l'image. 
+**`ADD`** - pour ajouter des fichiers dans notre container. 
 
 **`WORKDIR`** - pour modifier le répertoire courant, donc l'ensemble des commandes qui suivront seront exécutées depuis le répertoire défini par WORKDIR.
 
 **`RUN`** - pour exécuter une commande dans notre container.
 
-**`EXPOSE`** - permet d'indiquer le port sur lequel notre app écoute.
+**`EXPOSE`** - permet de définir le port d'écoute par défait.
 
-**`VOLUME`** - permet d'indiquer quel répertoire nous voulons partager avec notre hôte
+**`VOLUME`** - permet de définir les volumes utilisables.
 
-**`CMD`** - permet au container de savoir quelle commande il doit exécuter à son démarrage.
+**`ENTRYPOINT`** - permet de spécifier une commande qui sera exécutée au démarrage du container.
+
+**`CMD`** - si utilisé avec entrypoint, permet de donner des arguments par défaut au entrypoint.
 
 
 Pour construire l'image `docker build -t <nom_de l'image> <dossier ou créer l'image>`
@@ -97,41 +99,48 @@ Docker Compose permet de décrire, dans un fichier yml, plusieurs conteneurs com
 - **`depends_on`** permet de créer une dépendance entre 2 containers, donc de faire démarrer un container avant l'autre. Par exemple il faut démarrer le service db avant Wordpress car Wordpress dépend de la base de données pour fonctionner.
 
 
-## LIENS WEB
 ### MARIADB
 
-Dockerfile mariadb
-- pourquoi il a fallu recréer un dossier et chown mysql: car par défaut il s'exécuter dans ce dossier, donc il a fallu le créer sinon le container se fermait
-- expliquer les copy de fichier
-- expliquer le entrypoint
-- expliquer la cmd mysqld
-- expliquer le $@
+**Liens utiles:**
+
+- https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-debian-10#step-2-configuring-mariadb - instalation
+- https://developpaper.com/mariadb-mysql-configuration-file-my-cnf-detailed-explanation/ - configuration file
+- https://mariadb.com/kb/en/account-management-sql-commands/ - SQL commands
+- https://github.com/MariaDB/mariadb-docker/blob/master/docker-entrypoint.sh - mariadb entrypoint
 
 
-Pour se connecter à la base de données mariadb: 'mysql -u root -ppassword' pour ajouter le mdp
-'show databases' pour voir les bases de données
-'use <le nom de la database qu'on veut voir>'
-'show tables' 
-SELECT <column_name> from <table_name> (ex: SELECT user,password from user;)
+Pour se connecter à la base de données mariadb: 
 
-Install:
-- https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-debian-10#step-2-configuring-mariadb
+`mysql -u root -ppassword`-  pour se connecter à la BD;
 
-Configuration file:
-- https://www.digitalocean.com/community/tutorials/how-to-install-mariadb-on-debian-10#step-2-configuring-mariadb
-- https://developpaper.com/mariadb-mysql-configuration-file-my-cnf-detailed-explanation/
+`show databases` -  pour voir les bases de données;
 
-Gérer la database;
-- https://www.w3schools.com/sql/sql_create_table.asp
-- https://www.guru99.com/sql-server-create-user.html
-- https://www.digitalocean.com/community/tutorials/how-to-reset-your-mysql-or-mariadb-root-password root password
-- https://www.interserver.net/tips/kb/mysql-flush-commands/ flush privileges
-- https://mariadb.com/kb/en/grant/ grant mariadb
+`use <database_name>` - 
+
+`show tables` - 
+
+`SELECT <column_name> from <table_name>` (ex: SELECT user,password from user;) - pour afficher les informations demandées;
+
 
 ### WORDPRESS
 
-Le fichier wp-config. php se trouve à la racine de votre installation WordPress, sous les dossiers wp-admin, wp-content et wp-includes.
+**Installation**
 
-- https://wp-cli.org/fr/#installation
-- 
- 
+Pour WordPress, il faut installer WP-CLI :
+https://wp-cli.org/fr/#installation . Pour vérifier que l'installation a bien fonctionné -> `wp --info`
+
+Télécharger WordPress : https://fr-ca.wordpress.org/download/ . Puis copier le dossier zippé dans votre container, il faudra le unzip dans le script.
+
+Pour créer le `wp-config.php` -> `wp config create` - (https://developer.wordpress.org/cli/commands/config/create/)
+
+Pour créer la table WordPress -> `wp core install` - (https://developer.wordpress.org/cli/commands/core/install/)
+
+Pour créer le second user -> `wp user create` - (https://developer.wordpress.org/cli/commands/user/create/)
+
+
+
+
+
+### NGINX
+aller chercher ./conf/default.conf dans la vraie image nginx et le copier dans la VM puis dans le container
+
