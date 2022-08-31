@@ -16,7 +16,7 @@ FLUSH PRIVILEGES;
 EOF
     # &pour lancer en background
     mysqld --skip-networking &
-    #J'envoie des requêtes bidons jusqu'a ce que ma base de données soit prete a accepter des requêtes, 
+    #J'envoie des requêtes bidons jusqu'a ce que ma base de données soit prête a accepter des requêtes, 
     #donc qu'il puisse executer mon script initdataDB.sql
     for i in {30..0}; do
         if mysql --user=root --password=$MYSQL_ROOT_PASS --database=mysql <<<'SELECT 1' &> /dev/null; then

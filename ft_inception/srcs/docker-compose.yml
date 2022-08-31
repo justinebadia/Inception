@@ -12,6 +12,8 @@ services:
     env_file:
       - .env
     container_name: WordPress
+    depends_on:
+      - mariadb
     build: ./requirements/WordPress 
     restart: always
 

@@ -16,7 +16,6 @@ COPY ./conf/50-server.conf /etc/mysql/mariadb.conf.d
 
 COPY ./tools/script.sh .
 
-#une fois que l'image est build
 ENTRYPOINT [ "./script.sh" ] 
 
 CMD ["mysqld"]

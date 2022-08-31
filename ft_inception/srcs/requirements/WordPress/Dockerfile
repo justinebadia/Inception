@@ -22,5 +22,4 @@ ENTRYPOINT [ "./script.sh" ]
 
 #-F pour force to stay in foreground
 #-R pour allow pool to run as root
-
 CMD [ "php-fpm7.3", "-F", "-R"]
