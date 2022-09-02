@@ -12,9 +12,9 @@ EXPOSE 3306
 
 WORKDIR /tmp
 
-COPY ./conf/50-server.conf /etc/mysql/mariadb.conf.d
-
 COPY ./tools/script.sh .
+
+COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 
 ENTRYPOINT [ "./script.sh" ] 
 

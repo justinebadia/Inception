@@ -5,9 +5,8 @@ services:
       - .env
     container_name: mariadb
     build: ./requirements/mariadb
-   # volumes:
-  #    - db_data:/home/jbadia/data
     restart: always
+    hostname: mariadb
   wordpress:
     env_file:
       - .env

@@ -3,9 +3,9 @@
 set -euo pipefail #voir help set
 dataDB=/var/lib/mysql/init_dataDB.sql
 
-#chown -R $MYSQL_USER: $dataDB
 if [ ! -f $dataDB ]
 then
+    chown -R mysql:mysql /var/lib/mysql/
     mysql_install_db --user=mysql --datadir=/var/lib/mysql --skip-test-db > /dev/null
     cat > $dataDB <<EOF
 CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE_NAME;
