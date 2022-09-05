@@ -138,9 +138,34 @@ Pour créer la table WordPress -> `wp core install` - (https://developer.wordpre
 Pour créer le second user -> `wp user create` - (https://developer.wordpress.org/cli/commands/user/create/)
 
 
-
-
-
 ### NGINX
-aller chercher ./conf/default.conf dans la vraie image nginx et le copier dans la VM puis dans le container
+
+Se connecter au container Nginx en téléchargeant l'image officielle depuis le Docker Hub:
+
+```
+sudo docker run -d --name nginx-base -p 80:80 nginx:latest
+```
+
+Puis se rendre dans le dossier `/etc/nginx/conf.d` pour faire un cat du file `default.conf` pour l'insérer dans notre script.sh.
+
+Pour les protocoles TLS: 
+
+Vérifier si openssl est installé sur la VM -> `openssl version` sinon l'installer dans le Dockerfile.
+Puis éditer le fichier default.conf en ajoutant:
+
+```bash
+ # Path to certs
+ ssl_certificate		/etc/nginx/ssl/$CERT_CRT;
+	ssl_certificate_key	/etc/nginx/ssl/$CERT_KEY;
+	ssl_protocols		TLSv1.2 TLSv1.3;
+```
+
+Créer les certificats dans le dossier conf de la VM, afin d'aller les copier par la suite dans le container via le Dockerfile.
+
+Pour créer le **certificate authority**: `openssl req -x509 -sha256 -days 3650 -nodes -newkey rsa:2048 -subj "/CN=jbadia.42.fr/C=CA/ST=Quebec/L=Quebec City/O=42 Network/OU=42 Quebec" -keyout CA.key -out CA.crt`
+
+Pour créer la **server private key**: `openssl genrsa -out server.key 2048`
+
+toutes les commandes pour créer les key .... 
+modifier le fichier /etc/hosts pour ajouter notre nom de domaine.
 
