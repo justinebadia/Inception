@@ -169,3 +169,6 @@ Pour créer la **server private key**: `openssl genrsa -out server.key 2048`
 toutes les commandes pour créer les key .... 
 modifier le fichier /etc/hosts pour ajouter notre nom de domaine.
 
+
+jbadia.42.fr/wp-login.php
+
