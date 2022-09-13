@@ -169,6 +169,17 @@ Pour créer la **server private key**: `openssl genrsa -out server.key 2048`
 toutes les commandes pour créer les key .... 
 modifier le fichier /etc/hosts pour ajouter notre nom de domaine.
 
-
 jbadia.42.fr/wp-login.php
 
+**docker-network** : selon le driver choisit, permet d'avoir un réseau pour établir les connections entre nos containers. Ici, en local via notre VM qui est l'hôte. Cela permet d'isoler notre réseau. Le bridge driver permet qui tourne isolé de se connecter et de communiquer ensemble.
+Pour vérifier que les containers sont bien rattachés au bridge network: `docker network bridge srcs_inception`.
+
+The Host Driver use the networking provided by the host machine. And it removes network isolation between the container and the host machine where Docker is running. Donc on pourrait se connecter depuis le port 80.
+
+The None Driver : The none network driver does not attach containers to any network. Containers do not access the external network or communicate with other containers. You can use it when you want to disable the networking on a container.
+
+Verify that you cannoct connect via http port80:
+`curl localhost:80` 
+
+The use of TLS S v1.2/v1.3 certificate is mandatory and must be demonstrated. 
+In default.conf of nginx container -> It is cryptographic protocols designed to provide network communications security.
